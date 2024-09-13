@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://127.0.0.1:5501/ques_2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="./Q2_files/bootstrap.css">
+    <script src="./Q2_files/bootstrap.js"></script>
+    <style>
+        body {
+            background-image: url(./img/bg_aroundflower_pixabay.jpg);
+            background-repeat: repeat-x;
+        }
+    </style>
+    <title>Q2</title>
+</head>
+
+<body>
+    <header>
+        容器提示、顯示文字是否帶入時間、新增按鍵、綜合試算、統計
+    </header>
+    <div class="container-fluid align-middle" style="height: 10vh;">
+        <div class="col text-center">
+            <h1 class="row-7 text-center" style="margin-top: 10rem;">喝了多少試算一下 ···</h1>
+            <h5 class="fst-italic">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                根據零級動力學，酒精代謝 10g/hr</h5>
+            <h5 class="fst-italic">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                計算結果僅供參考···</h5>
+        </div>
+    </div>
+    <div class="container-fluid text-center" style="height: 60vh;">
+        <form action="http://127.0.0.1:5501/ques_2.html" class="text-start m-5">
+            <h3 class="text-center m-3">我記得我喝什麼</h3>
+            <select class="form-control m-3" name="whatType" id="whatType">
+                <option value="0">種類</option>
+                <option value="0.05">啤酒(5%)</option>
+                <option value="0.15">紅白酒(15%)</option>
+                <option value="0.40">調酒(40%)</option>
+                <option value="0.60">烈酒(60%)</option>
+                <option value="0.30">利口酒(30%)</option>
+            </select>
+            <p class="float-start m-3">喝多少（cc）</p>
+            <input id="howMany" type="number" class="m-3">
+            <button class="btn btn-outline-success d-flex m-3" onclick="alchCount_2(event)" style="width: 10%;">試算</button>
+            <div id="alchResult_2"></div>
+        </form>
+        <hr>
+        <form class="text-start m-5">
+            <h3 class="text-center m-3">大概喝幾度</h3>
+            <select class="form-control m-3" name="degree" id="degree">
+                <option value="0">度數</option>
+                <option value="0.05">5%</option>
+                <option value="0.10">10%</option>
+                <option value="0.20">20%</option>
+                <option value="0.30">30%</option>
+                <option value="0.40">40%</option>
+                <option value="0.50">50%</option>
+                <option value="0.60">60%</option>
+            </select>
+            <p class="float-start m-3">喝多少（cc）</p>
+            <input id="howmuch" type="number" class="m-3">
+            <button class="btn btn-outline-success d-flex m-3" onclick="alchCount(event)" style="width: 10%;">試算</button>
+            <div id="alchResult"></div>
+        </form>
+        <!-- 換頁 button -->
+        <div class="row justify-content-evenly" style="margin-top: 10rem;">
+            <a href="http://127.0.0.1:5501/ques_1.html" class="col-2">
+                <button class="btn btn-outline-success btn-lg">上一題</button>
+            </a>
+            <a href="http://127.0.0.1:5501/ques_3.html" class="col-2">
+                <button class="btn btn-outline-success btn-lg">下一題</button>
+            </a>
+        </div>
+
+    </div>
+    <footer class="bg-primary text-white text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
+                    <h5>車禍處理助手</h5>
+
+                    <p class="fst-italic">
+                        本站所述僅供參考，不負任何法律責任。
+                    </p>
+                </div>
+
+                <div class="col-lg-9 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">外部連結</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="https://www.mvdis.gov.tw/m3-emv-car/car/licenseQuery#gsc.tab=0" class="text-white">監理服務網——強制險查詢</a>
+                        </li>
+                        <li>
+                            <a href="https://www.mvdis.gov.tw/m3-emv-car/car/checkQuery#gsc.tab=0" class="text-white">監理服務網——定檢日查詢</a>
+                        </li>
+                        <li>
+                            <a href="https://www.mvdis.gov.tw/m3-emv-vil/vil/penaltyQueryPay#gsc.tab=0" class="text-white">監理服務網——交通罰鍰查詢及繳納</a>
+                        </li>
+                        <li>
+                            <a href="https://www.mvdis.gov.tw/m3-emv-fee/fee/fuelFee#gsc.tab=0" class="text-white">監理服務網——個人汽燃費查詢及繳納</a>
+                        </li>
+                        <li>
+                            <a href="https://netap.tax.nat.gov.tw/PEFLRX/Ept_Login" class="text-white">地方稅網路申報作業——線上查繳稅（需插卡）</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2024 Copyright:
+            <a class="text-white" href="http://127.0.0.1:5501/ques_2.html#">Liz</a>
+        </div>
+    </footer>
+    <script>
+        alert('如疑有酒駕可能，一律建議現場和解，十來萬都值得！！\n\n只要酒駕或拒測，即使車主非駕駛人一樣扣牌\n\n酒駕或拒測都會扣牌、累犯都會被公吿\n\n>0.15mg/l：達行政罰則（1.5萬～12萬）\n>0.25mg/l：達公告危險\n無肇事->三年得併科30萬以下\n有肇事->反正更多\n\n拒測：18萬/次累加無上限+吊扣牌照+吊銷駕照。\n\n生理平衡測試：如果達公共危險罪程度，可以要求做測試，行政罰躲不掉但有機會在刑法上獲不起訴。'
+
+        )
+        // 第一區塊點擊按鈕後觸發
+        function alchCount(e) {
+            e.preventDefault(); // 阻止預設行為
+            // 抓到 form 的值
+            let d = document.getElementById('degree').value;
+            let c = document.getElementById('howmuch').value;
+            // 無條件進位
+            let result = Math.round(d * c / 10 * 100) / 100;
+            console.log(result);
+            // 把值帶到預留 div 顯示
+            document.getElementById('alchResult').innerText = '大約需要 ' + result + ' 小時代謝';
+        }
+        // 第二區塊點擊後觸發
+        function alchCount_2(e) {
+            e.preventDefault(); // 阻止預設行為
+            // 抓到 form 的值
+            let wt = document.getElementById('whatType').value;
+            let m = document.getElementById('howMany').value;
+            // 無條件進位
+            let result = Math.ceil(wt * m / 10 * 100) / 100;
+            console.log(result);
+            // 把值帶到預留 div 顯示
+            document.getElementById('alchResult_2').innerText = '大約需要 ' + result + ' 小時代謝';
+        }
+    </script>
+</body></html>

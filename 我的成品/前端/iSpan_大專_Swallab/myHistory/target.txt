@@ -1,0 +1,15 @@
+1. 有四個按鈕分別來自六個資料表再 join 其他關聯表取得資訊
+
+歷史訂單（OrderInfos 關聯 OrderDetails, OrderStatuses, Members)
+
+歷史食記 (MemberNotes 關聯 Members, RestInfos) 
+
+我的評論（hover 會出現餐廳評論( RestComments ) 食記留言( NotesComments ) 二個按鈕可以點選)，點擊筆的 icon 可以直接編輯再 update 資料庫，也可以點擊打叉的 icon 從資料庫刪除，這二個動作都會重新渲染畫面。MemberReviews 的 score 會出現在星星 icon 旁邊顯示數字。
+
+我的收藏（hover 會出現食記書籤(NotesFavorites 關聯 MemberNotes 及 RestInfos) 及口袋名單( RestFavorites 關聯 RestInfos)，點擊實心 icon 會彈出視窗，再次確認後從資料庫移除，並且重新渲染畫面
+
+2. 載入網頁則是預設撈出全部表單，以主要的六個表單的 created_at 排序根據不同資料帶入對應的模組，以 created_at 從新到舊上到下排序
+
+3. 點擊按鈕不跳轉頁面，只會過濾出對應的 React 模組並且用迴圈把特定的資料表撈出來一筆一筆呈現在模組
+
+4. 每次最多呈現四筆資料，如果符合條件的資料超過四筆則會有按鈕「觀看更多」，點擊會再呈現四筆，如果符合條件的資料都呈現出來了，就不會有按鈕可以按

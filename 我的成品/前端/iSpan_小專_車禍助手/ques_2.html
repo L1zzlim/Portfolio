@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./bootstrap-5.1.3-dist/css/bootstrap.css">
+    <script src="./bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url(./img/bg_car_pixabay.jpg);
+            background-repeat: repeat-y;
+            background-size: cover;
+            font-family: "Chocolate Classical Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .bgcorange {
+            background-color: rgba(222, 141, 42, 0.7);
+        }
+
+        .bgcwhite {
+            background-color: white;
+        }
+
+        .myFont {
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 5px;
+            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+                0px -4px 10px rgba(255, 255, 255, 0.3)
+        }
+
+        #sidebar {
+            height: 100vh;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        #sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+    </style>
+    <title>Q2</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./headpage.html">
+                    <img src="./img/logo_flaticon.jpg" alt="" style="width: 40px;">
+                </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">首頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">車禍進度</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">車籍資料</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">關於我們</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">常見QA</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                        <button class="btn btn-outline-success mb-2 mb-lg-0 me-lg-2">
+                            Hi, XXX
+                        </button>
+                        <div>
+                            <button class="btn btn-outline-success btn-sm me-2">
+                                登出
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="./ques_1.html" style="font-size:large;">過去 24 小時有沒有喝酒？</a>
+        <a href="./ques_2.html" style="font-size:large;">體內酒精濃度計算？</a>
+        <a href="./ques_3.html" style="font-size:large;">有沒有人受傷？</a>
+        <a href="./ques_4.html" style="font-size:large;">有沒有報警？</a>
+        <a href="./ques_5.html" style="font-size:large;">警察有受理嗎？</a>
+        <a href="./ques_6.html" style="font-size:large;">是誰受傷？</a>
+        <a href="./ques_7.html" style="font-size:large;">雙方車輛有損壞嗎？</a>
+        <a href="./end.html" style="font-size:large;">問卷回饋</a>
+    </div>
+    <button class="btn btn-outline-secondary bgcwhite" onclick="openNav()">點我跳至···</button>
+
+    <div class="container-fluid align-middle" style="height: 10vh;">
+        <div class="col text-center ">
+            <h1 class="row-7 text-center myFont bgcorange" style="margin-top: 10rem;">喝了多少試算一下 ···</h1>
+            <!-- <h5 class="fst-italic">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                根據零級動力學，酒精代謝 10g/hr</h5> -->
+            <h5 class="fst-italic">
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+                <span class="myFont bgcorange">
+                    個人代謝狀況不同，計算結果僅供參考</span>
+            </h5>
+        </div>
+    </div>
+    <!-- 度數（種類）*單位（容器->cc or cc)*數量 -->
+    <div class="container-fluid text-center" style="height:90vh;">
+        <form class="text-start me-5 mb-2 ms-5" style="font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        color: #ffffff;
+        text-align: center;
+        letter-spacing: 5px;
+        text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
+          0px -4px 10px rgba(255,255,255,0.3)">
+            <!-- 性別 -->
+            <h3 class="text-center mt-5"><span class="bgcorange">酒精代謝簡易計算<br>（未考慮個體體質差異及飲酒習慣）</span></h3>
+            <h5><span class="bgcorange">生理性別</span></h5>
+            <!-- <input type="radio" name="gender" id="male" value="1">
+            <label for="male">男性&nbsp;&nbsp;</label>
+            <input type="radio" name="gender" id="female" value="0">
+            <label for="female">女性</label> -->
+            <select class="form-control m-3" name="gender" id="gender">
+                <option value="1">男性</option>
+                <option value="0">女性</option>
+            </select>
+            <hr>
+            <h5><span class="bgcorange">體重(kg)</span></h5>
+            <input type="number" id="myWeight"><span class="bgcorange"> kg</span>
+            <hr>
+            <h5><span class="bgcorange">飲酒資料</span></h5>
+            <select class="form-control m-3" name="whatType" id="whatType">
+                <option value="0">酒類</option>
+                <option value="5">啤酒(5%)</option>
+                <option value="15">紅白酒(15%)</option>
+                <option value="40">調酒(40%)</option>
+                <option value="60">烈酒(60%)</option>
+                <option value="30">利口酒(30%)</option>
+            </select>
+            <h5><span class="bgcorange">度數 (%)</span></h5>
+            <input id="degree" type="number" class="m-3"><span class="bgcorange myFont">%</span>
+        </form>
+        <form class="text-start me-5 mb-3 ms-5">
+            <!-- <h3 class="text-center m-3">種類</h3> -->
+            <select class="form-control m-3" name="cc" id="cc">
+                <option value="0">容器</option>
+                <option value="330">一般鋁罐（台啤）</option>
+                <option value="500">長鋁罐（台虎）</option>
+                <option value="330">小玻璃瓶（可樂娜）</option>
+                <option value="500">一般玻璃瓶（台啤）</option>
+                <option value="100">馬丁尼杯</option>
+                <option value="250">威士忌杯</option>
+                <option value="330">Highball杯</option>
+            </select>
+            <p class="float-start m-3"><span class="bgcorange myFont">喝多少（cc）</span></p>
+            <input id="howMuch" type="number" class="m-3"><span class="bgcorange myFont">cc</span><br>
+            <p class="float-start m-3"><span class="bgcorange myFont">幾杯 (份，>=1)</span></p>
+            <input id="cups" type="number" class="m-3" value="1"><span class="bgcorange myFont">單位</span>
+            <hr>
+            <p class="float-start m-3"><span class="bgcorange myFont">從開始喝到現在過了幾個小時</span></p>
+            <input type="number" id="myHour" class="m-3"><span class="bgcorange myFont">小時</span>
+            <!-- <button class="btn btn-outline-success m-3" onclick="alchCount(event)" style="width: 10%;">試算</button> -->
+            <span class="myFont bgcorange" id="alchResult"></span>
+            <div class="row align-content-center text-center">
+                <button class="col-3 btn btn-outline-primary m-3 bgcwhite" onclick="sum(event)"
+                    style="width: 12%;">加入統計</button>
+                <button class="col-3 btn btn-outline-danger m-3 bgcwhite" onclick="allClear(event)"
+                    style="width: 12%;">清空統計</button>
+                <div id="sumResult" class="col-3 my-auto myFont bgcorange" style="width: 50%;"></div>
+            </div>
+        </form>
+        <!-- 換頁 button -->
+        <div class="row justify-content-evenly" style="margin-top: 10rem;">
+            <a href="./ques_1.html" class="col-2">
+                <button class="btn btn-outline-success btn-lg bgcwhite">上一題</button>
+            </a>
+            <a href="./ques_3.html" class="col-2">
+                <button class="btn btn-outline-success btn-lg bgcwhite">下一題</button>
+            </a>
+        </div>
+
+    </div>
+    <footer class="text-black text-start " style="background-color: rgba(222, 141, 42, 0.9);">
+        <div class="container p-4">
+            <div class="row">
+                <h5>Accident Stop! 你的車禍助手!</h5>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="fst-italic">
+                        本站內容僅供參考，不負任何法律責任。
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <h5>外部連結</h5>
+
+                <ul class="list-unstyled mb-0 row">
+                    <li class="col col-lg-4 col-md-6 col-sm-12">
+                        <a href="https://www.mvdis.gov.tw/m3-emv-car/car/licenseQuery#gsc.tab=0"
+                            class="text-black">監理服務網——強制險查詢</a>
+                    </li>
+                    <li class="col col-lg-4 col-md-6 col-sm-12">
+                        <a href="https://w4w.mvdis.gov.tw/m3-emv-car/car/checkQuery#gsc.tab=0"
+                            class="text-black">監理服務網——定檢日查詢</a>
+                    </li>
+                    <li class="col col-lg-4 col-md-6 col-sm-12">
+                        <a href="https://www.mvdis.gov.tw/m3-emv-vil/vil/penaltyQueryPay#gsc.tab=0"
+                            class="text-black">監理服務網——交通罰鍰查詢及繳納</a>
+                    </li>
+                    <li class="col col-lg-4 col-md-6 col-sm-12">
+                        <a href="https://www.mvdis.gov.tw/m3-emv-fee/fee/fuelFee#gsc.tab=0"
+                            class="text-black">監理服務網——個人汽燃費查詢及繳納</a>
+                    </li>
+                    <li class="col col-12 col-lg-4 ">
+                        <a href="https://netap.tax.nat.gov.tw/PEFLRX/Ept_Login"
+                            class="text-black">地方稅網路申報作業——線上查繳稅（需插卡）</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2024- Copyright:
+            <a class="text-black" href="#">Liz</a>
+        </div>
+    </footer>
+    <script>
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+        // EBAC=（0.806*每10g酒精*1.2/ (性別水份 *體重) - 性別代謝*小時 ）*10
+        // 酒駕提醒
+        // alert
+        //     ('如疑有酒駕可能，一律建議現場和解，十來萬都值得！！\n\n只要酒駕或拒測，即使車主非駕駛人一樣扣牌\n\n酒駕或拒測都會扣牌、累犯都會被公吿\n\n>0.15mg/l：達行政罰則（1.5萬～12萬）\n>0.25mg/l：達公告危險\n無肇事->三年得併科30萬以下\n有肇事->反正更多\n\n拒測：18萬/次累加無上限+吊扣牌照+吊銷駕照。\n\n生理平衡測試：如果達公共危險罪程度，可以要求做測試，行政罰躲不掉但有機會在刑法上獲不起訴。'
+        //     )
+        // 帶入option值
+
+        document.getElementById('whatType').addEventListener('change', function () {
+            document.getElementById('degree').value = this.value;
+        });
+        document.getElementById('cc').addEventListener('change', function () {
+            document.getElementById('howMuch').value = this.value;
+        });
+
+        // 試算
+        var result_hr = 0;
+        var result_min = 0;
+        var countClick = 0;
+        function alchCount(e) {
+            // 阻止預設行為
+            e.preventDefault();
+            // 抓到 form 的值
+            let y = document.getElementById('degree').value;
+            let h = document.getElementById('howMuch').value;
+            let c = document.getElementById('cups').value;
+            // 酒精換算為 g 
+            var alch_count = y / 100 * h * c * 0.79;
+            // 四捨五入 -> 轉換度數百分比 * cc * 杯數 * 比重 / 每小時代謝 (取二位數) - 減去小數部分
+            // 取地板 -> 轉換度數百分比 * cc * 杯數 * 比重 / 每小時代謝
+            if (y * h * c * document.getElementById('myWeight').value == 0) {
+                alert('請再次確認資料是否輸入完整')
+            }
+            else {
+                // EBAC=（0.806*每10g酒精*1.2/ (性別水份 *體重) - 性別代謝*小時 ）*10
+                if (document.getElementById('gender').value == 1) {
+                    var myEBAC = Math.max(0, ((((0.806 * alch_count / 14 * 1.2) / (0.58 * document.getElementById('myWeight').value)) - (0.015 * document.getElementById('myHour').value)) * 1).toFixed(4))
+                    console.log(alch_count)
+                    console.log(0.58 * document.getElementById('myWeight').value)
+                    console.log(document.getElementById('myHour').value)
+                    document.getElementById('alchResult').innerHTML = '現在的血液酒精濃度大約為 ' + myEBAC + 'g/dL （法規為<0.03）<br>呼氣測試「可能的」數值為 ' + (myEBAC / 0.21).toFixed(4) + 'mg/L （法規為 <0.15）';
+                    // 取整數 -> 轉換度數百分比 * cc * 杯數 * 比重 / 每小時代謝  - 減去小數部分
+                    // var result_hr = Math.floor(alch_count)
+                    // let result = Math.round(y/100 * h * c * 0.79 / 10*100)/100 - Math.round(y/100 * h * c * 0.79 / 10);
+                    // var result_min = (((Math.floor(y / 100 * h * c * 0.79 / 10 * 100) / 100) - Math.floor(y / 100 * h * c * 0.79 / 10)) * 60).toFixed(0);
+                    // var result_min = ((alch_count % Math.floor(alch_count)) * 60).toFixed(0)
+                    // 把值帶到預留 div 顯示
+                    // document.getElementById('alchResult').innerText = '大約需要 ' + result_hr + ' 小時 ' + result_min + ' 分鐘代謝';
+                }
+                else {
+                    var myEBAC = Math.max(0, ((((0.806 * alch_count / 14 * 1.2) / (0.49 * document.getElementById('myWeight').value)) - (0.017 * document.getElementById('myHour').value)) * 1).toFixed(4))
+                    console.log(alch_count)
+                    console.log(0.58 * document.getElementById('myWeight').value)
+                    console.log(document.getElementById('myHour').value)
+                    document.getElementById('alchResult').innerHTML = '現在的血液酒精濃度大約為 ' + myEBAC + 'g/dL （法規為<0.03）<br>呼氣測試「可能的」數值為 ' + (myEBAC / 0.21).toFixed(4) + 'mg/L （法規為 <0.15）';
+                }
+            }
+        }
+        //  統計
+        var myEBAC_sum = 0;
+        function sum(e) {
+            // 阻止預設行為
+            e.preventDefault();
+            let y = document.getElementById('degree').value;
+            let h = document.getElementById('howMuch').value;
+            let c = document.getElementById('cups').value;
+            var alch_count = y / 100 * h * c * 0.79;
+            var myEBAC = Math.max(0, ((((0.806 * alch_count / 14 * 1.2) / (0.49 * document.getElementById('myWeight').value)) - (0.017 * document.getElementById('myHour').value)) * 1).toFixed(4))
+            // console.log(result_sum)
+            if (y * h * c * document.getElementById('myWeight').value == 0) {
+                alert('請再次確認資料是否輸入完整')
+            }
+            else {
+                if (document.getElementById('gender').value == 1) {
+                    var myEBAC = Math.max(0, ((((0.806 * alch_count / 14 * 1.2) / (0.58 * document.getElementById('myWeight').value)) - (0.015 * document.getElementById('myHour').value)) * 1).toFixed(4))
+                    console.log(alch_count)
+                    console.log(0.58 * document.getElementById('myWeight').value)
+                    console.log(document.getElementById('myHour').value)
+                    myEBAC_sum += myEBAC;
+                    document.getElementById('sumResult').innerHTML = '現在的血液酒精濃度大約為 ' + myEBAC_sum.toFixed(4) + 'g/dL （法規為<0.03）<br>呼氣測試「可能的」數值為 ' + (myEBAC_sum / 0.21).toFixed(4) + 'mg/L （法規為 <0.15）';
+                }
+                else {
+                    var myEBAC = Math.max(0, ((((0.806 * alch_count / 14 * 1.2) / (0.49 * document.getElementById('myWeight').value)) - (0.017 * document.getElementById('myHour').value)) * 1).toFixed(4))
+                    console.log(alch_count)
+                    console.log(0.58 * document.getElementById('myWeight').value)
+                    console.log(document.getElementById('myHour').value)
+                    myEBAC_sum += myEBAC;
+                    document.getElementById('sumResult').innerHTML = '現在的血液酒精濃度大約為 ' + myEBAC_sum.toFixed(4) + 'g/dL （法規為<0.03）<br>呼氣測試「可能的」數值為 ' + (myEBAC_sum / 0.21).toFixed(4) + 'mg/L （法規為 <0.15）';
+                }
+            }
+        }
+        // 重新整理
+        function allClear(e) {
+            // 阻止預設行為
+            e.preventDefault();
+            window.location.reload();
+        }
+        // 第二區塊點擊後觸發
+        // function alchCount_2(e) {
+        //     //阻止預設行為
+        //     e.preventDefault();
+        //     // 抓到 form 的值
+        //     let wt = document.getElementById('whatType').value;
+        //     let m = document.getElementById('degree').value;
+        //     // 無條件進位
+        //     // let result = Math.ceil(wt * m * 0.79 / 10 * 100) / 100;
+        //     console.log(result);
+        //     // 把值帶到預留 div 顯示
+        //     document.getElementById('alchResult_2').innerText = '大約需要 ' + result + ' 小時代謝';
+        // }
+    </script>
+</body>
+
+</html>

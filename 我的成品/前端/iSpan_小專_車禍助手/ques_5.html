@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./bootstrap-5.1.3-dist/css/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&display=swap" rel="stylesheet">
+    <script src="./bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+    <style>
+        body {
+            background-image: url(./img/bg_car_pixabay.jpg);
+            background-size: cover;
+            font-family: "Chocolate Classical Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        img {
+            height: 10%;
+        }
+
+        .bgcwhite {
+            background-color: white;
+        }
+
+        .bgcorange {
+            background-color: rgba(222, 141, 42, 0.7);
+        }
+
+        #sidebar {
+            height: 100vh;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        #sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+    </style>
+    <title>Q4</title>
+</head>
+
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">小提醒！</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>如果是在停車場、私人土地等地方發生碰撞</p>
+                    <p>確實警察可能會說沒辦法受理也沒有事故聯單（三聯單）</p>
+                    <p>這個時候不用慌張！記下這三個資料一樣可以跟保險公司出險！</p>
+                    <ol>
+                        <li>承辦員警姓名</li>
+                        <li>承辦員警編號</li>
+                        <li>承辦派出所名稱及電話</li>
+                    </ol>
+                    <p>這是備存報案紀錄，為了在保險公司需要跟警方確認事故相關時可以提供查證～</p>
+                    <p>Tips: 直接撥打派出所電話會比打 110 報案更有效率喔！</p>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d232982.78704246678!2d120.49089988330279!3d24.159242910620314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5rS-5Ye65omA!5e0!3m2!1szh-TW!2stw!4v1717513085451!5m2!1szh-TW!2stw"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <a href="./ques_6.html" class="btn btn-primary">下一題</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./headpage.html">
+                    <img src="./img/logo_flaticon.jpg" alt="" style="width: 40px;">
+                </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">首頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">車禍進度</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">車籍資料</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">關於我們</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">常見QA</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                        <button class="btn btn-outline-success mb-2 mb-lg-0 me-lg-2">
+                            Hi, XXX
+                        </button>
+                        <div>
+                            <button class="btn btn-outline-success btn-sm me-2">
+                                登出
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="./ques_1.html" style="font-size:large;">過去 24 小時有沒有喝酒？</a>
+        <a href="./ques_2.html" style="font-size:large;">體內酒精濃度計算？</a>
+        <a href="./ques_3.html" style="font-size:large;">有沒有人受傷？</a>
+        <a href="./ques_4.html" style="font-size:large;">有沒有報警？</a>
+        <a href="./ques_5.html" style="font-size:large;">警察有受理嗎？</a>
+        <a href="./ques_6.html" style="font-size:large;">是誰受傷？</a>
+        <a href="./ques_7.html" style="font-size:large;">雙方車輛有損壞嗎？</a>
+        <a href="./end.html" style="font-size:large;">問卷回饋</a>
+    </div>
+    <button class="btn btn-outline-secondary bgcwhite" onclick="openNav()">點我跳至···</button>
+
+    <div class="container-fluid align-middle" style="height: 10vh;">
+        <div class="col text-center">
+            <h1 class="row-7 text-center" style="margin-top:10rem;
+            background-color: rgba(222, 141, 42, 0.7); font-family: 'Ubuntu', sans-serif;
+            font-size: 60px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 5px;
+            text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
+              0px -4px 10px rgba(255,255,255,0.3)">警察有受理嗎？</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center align-content-center" style="height:90vh">
+        <div class="row align-items-center justify-content-center">
+            <div class="col col-md-4 col-ms-12">
+                <img src="./img/police_pixabay.jpg" alt="" class="" style="height: 300px;" href="#">
+                <a href="./ques_6.html" class="d-block" style="margin-top: 1em; margin-bottom: 2em;">
+                    <button class="btn btn-outline-success btn-lg bgcwhite" style="width: 30%;">有</button>
+                </a>
+            </div>
+            <div class="col col-md-4 col-ms-12">
+                <img src="./img/confused_pixabay.jpg" alt="" class="" style="height: 300px;" href="#">
+                <a href="#" class="d-block" style="margin-top: 1em; margin-bottom: 2em;">
+                    <button id="notyet" type="button" class="btn btn-outline-danger btn-lg bgcwhite" style="width: 30%;"
+                        data-bs-toggle="modal" data-bs-target="#myModal">沒有</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer class="text-black text-start " style="background-color: rgba(222, 141, 42, 0.9);">
+        <div class="container p-4">
+            <div class="row">
+                <h5>Accident Stop! 你的車禍助手!</h5>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="fst-italic">
+                        本站內容僅供參考，不負任何法律責任。
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <h5>外部連結</h5>
+
+                <ul class="list-unstyled mb-0 row">
+                    <li class="col col-lg-4 col-md-6 col-sm-12">
+                        <a href="https://www.mvdis.gov.tw/m3-emv-car/car/licenseQuery#gsc.tab=0"
+                            class="text-black">監理服務網——強制險查詢</a>
+                    </li>
+                    <li class="col col-lg-4 col-md-6 col-sm-12">
+                        <a href="https://w4w.mvdis.gov.tw/m3-emv-car/car/checkQuery#gsc.tab=0"
+                            class="text-black">監理服務網——定檢日查詢</a>
+                    </li>
+                    <li class="col col-lg-4 col-md-6 col-sm-12">
+                        <a href="https://www.mvdis.gov.tw/m3-emv-vil/vil/penaltyQueryPay#gsc.tab=0"
+                            class="text-black">監理服務網——交通罰鍰查詢及繳納</a>
+                    </li>
+                    <li class="col col-lg-4 col-md-6 col-sm-12">
+                        <a href="https://www.mvdis.gov.tw/m3-emv-fee/fee/fuelFee#gsc.tab=0"
+                            class="text-black">監理服務網——個人汽燃費查詢及繳納</a>
+                    </li>
+                    <li class="col col-12 col-lg-4 ">
+                        <a href="https://netap.tax.nat.gov.tw/PEFLRX/Ept_Login"
+                            class="text-black">地方稅網路申報作業——線上查繳稅（需插卡）</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2024- Copyright:
+            <a class="text-black" href="#">Liz</a>
+        </div>
+    </footer>
+    <script>
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+    </script>
+</body>
+
+</html>

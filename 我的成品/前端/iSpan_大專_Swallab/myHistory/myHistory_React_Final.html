@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- css -->
+    <link href="../css/root.css" rel="stylesheet">
+    <link href="../css/nav.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="../css/myHistory_final.css">
+    <!-- <link rel="stylesheet" href="../css/history_react.css"> -->
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- NAV_begin : sticky-top -->
+    <!-- <div id="nav-container"></div> -->
+
+    <nav class="navbar navbar-expand sticky-top shadow">
+        <div class="container">
+            <!-- LOGO -->
+            <a class="navbar-brand ms-5 col-1" href="../headpage/headpage.html">
+                <img src="../images/root/logo.jpg" alt="" class="logo d-inline-block align-text-top">
+                <!-- <img src="../../public/storage/avatar/1.jpg" alt="" class="avatar d-inline-block align-text-top"> -->
+            </a>
+            <!-- 伸縮 -->
+            <div class="collapse navbar-collapse col-10" id="navbarSupportedContent">
+                <div class="nav ms-0 me-3 row">
+                    <div class="nav-item col-6">
+                        <!-- 首頁沒有 active -->
+                        <!-- <a class="nav-link active" aria-current="page" href="#">Active</a> -->
+                        <a class="d-block nav_mainbtn nav_mainbtn_rest" href="../restaurant/detail.html">找餐廳</a>
+                    </div>
+                    <div class="nav-item col-6">
+                        <a class="d-block nav_mainbtn nav_mainbtn_note" href="../foodNotes/foodNotes.html">看食記</a>
+                    </div>
+                </div>
+                <!-- Input 都在這 -->
+                <form method="post" action="/profile" class="ms-2 me-1 w-100" role="search" name="search">
+                    <!-- @csrf -->
+                    <div class="d-flex" style="width: 100%;">
+                        <!-- hover、click 換 icon -> src="./img/blog.png" -->
+                        <div id="theicon" class="theicon mt-2 me-0 align-items-center justify-content-center">
+                            <div id="popup" class="popup text-center d-flex align-items-center justify-content-center">
+                                <p><i id="showicon" class=""></i></p>
+                            </div>
+                            <div id="popupBR" class="popupBR">
+                                <div id="popupBlog" class="col-4 text-center">
+                                    <p class="text-center"><i class="fa-solid fa-book-open"></i></p>
+                                </div>
+                                <div id="popupRest" class="col-4 text-center">
+                                    <p><i class="fa-solid fa-utensils"></i></p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- 搜尋框 + 情境按鈕(pill 會改成底線) -->
+                        <div class="d-block position-relative m-0 p-0 col">
+                            <!-- 搜尋框 start -->
+                            <!-- <input class="form-control m-0" type="search" placeholder="Click" aria-label="Search"> -->
+                            <div style="display: flex;" clas="row">
+                                <div class="col-6">
+                                    <input type="text" id="myInput" onclick="myFunction()" placeholder="點擊我"
+                                        class="form-control m-0">
+                                    <!-- from 資料庫 -->
+                                    <div id="myDropdown" class="dropdown-content"
+                                        style="display: none; position: absolute;">
+                                        <a href="#cate_no" onclick="fillInput('null')"
+                                            class="position-relative">不挑分類</a>
+                                        <a href="#cate_hotpot" onclick="fillInput('火鍋')"
+                                            class="position-relative">火鍋</a>
+                                        <a href="#cate_bbq" onclick="fillInput('燒肉')" class="position-relative">燒肉</a>
+                                        <a href="#cate_izakaya" onclick="fillInput('居酒屋')"
+                                            class="position-relative">居酒屋</a>
+                                        <a href="#cate_ramen" onclick="fillInput('拉麵')" class="position-relative">拉麵</a>
+                                        <a href="#cate_dessert" onclick="fillInput('甜點')"
+                                            class="position-relative">甜點</a>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+
+                                    <input type="text" id="myInput2" onclick="myFunction2()" placeholder="點擊我"
+                                        class="form-control m-0 col-6">
+                                    <!-- from 資料庫 -->
+                                    <div id="myDropdown2" class="dropdown-content"
+                                        style="display: none; position: absolute;">
+                                        <a href="" id="nearby" onclick="fillInput2">我的附近</a>
+                                        <a href="#loc_no" onclick="fillInput2('null')"
+                                            class="position-relative">不挑地區</a>
+                                        <a href="#loc_Taichung" onclick="fillInput2('台中市')"
+                                            class="position-relative">台中市</a>
+                                        <a href="#loc_1" onclick="fillInput2('選項2')" class="position-relative">選項2</a>
+                                        <a href="#loc_2" onclick="fillInput2('選項3')" class="position-relative">選項3</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- 搜尋框 end -->
+                            <button class="position-absolute translate-middle rounded-pill filter_btn"
+                                style="margin-left: 10%;">
+                                <img class="icon" src="../images/nav_icon/dating.png" alt="">約會
+                            </button>
+                            <button class="position-absolute translate-middle rounded-pill filter_btn"
+                                style="margin-left: 30%;">
+                                <img class="icon" src="../images/nav_icon/group.png" alt="">聚餐
+                            </button>
+                            <button class="position-absolute translate-middle rounded-pill filter_btn"
+                                style="margin-left: 50%;">
+                                <img class="icon" src="../images/nav_icon/confetti.png" alt="">慶生
+                            </button>
+                            <button class="position-absolute translate-middle rounded-pill filter_btn"
+                                style="margin-left: 70%;">
+                                <img class="icon" src="../images/nav_icon/handshake.png" alt="">商務
+                            </button>
+                            <button class="position-absolute translate-middle rounded-pill filter_btn"
+                                style="margin-left: 90%;">
+                                <img class="icon" src="../images/nav_icon/disabled-people.png" alt="">無障礙
+                            </button>
+                        </div>
+                        <!-- 搜尋 icon = submit -->
+                        <input type="image" src="../images/nav_icon/loupe.png" class="icon mt-2 ms-0"
+                            onclick="document.search.submit()">
+                        <!-- <img src="./img/loupe.png" class="icon mt-2 ms-1" alt="" type="submit"> -->
+                    </div>
+                </form>
+                <!-- 登入及註冊按鈕 -->
+                <div class="ms-3 me-5 col-1">
+                    <a href="#" class="">
+                        <button class="btn btn-sm btnLogin text-nowrap">登入/註冊</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- NAV_end -->
+
+
+    <main>
+        <div class="w-100 container mt-5" style="flex:1">
+            <div id="root"></div>
+
+            <!-- main content_end -->
+
+        </div>
+        </div>
+    </main>
+
+    <!-- Footer_begin -->
+    <footer class="myFooter mt-3">
+        <!-- 左右二欄 -->
+        <div class="row justify-content-center mt-3 container">
+            <!-- 左邊logo -->
+            <div class="col-4 text-center"></div>
+            <div class="col-2 justify-content-center">
+                <img src="../images/root/logo.jpg" class="logo" alt="">
+                <div class="text-center">
+                    <span class="rights text-nowrap">© 版權聲明</span>
+                </div>
+            </div>
+            <!-- 右邊三列 -->
+            <div class="col-2">
+                <div class="">
+                    <a class="btn btnFooter text-nowrap">找餐廳</a>
+                </div>
+                <div class="">
+                    <a class="btn btnFooter text-nowrap">看食記</a>
+                </div>
+                <div class="row justify-content-center">
+                    <!-- 二個 icon -->
+                    <a href="#" class="col-6 text-center">
+                        <i class="fa-brands fa-facebook"></i> <!-- facebook -->
+                    </a>
+                    <a href="#" class="col-6 text-center">
+                        <i class="fa-brands fa-instagram"></i> <!-- instagram -->
+                    </a>
+                </div>
+            </div>
+            <div class="col-4 text-center"></div>
+        </div>
+    </footer>
+    <!-- Footer_end -->
+
+
+    <!-- React -->
+
+    <!-- mockData ok -->
+
+    <!-- <script type="module">
+        import {MemberActivity} from '../js/myHistory_componentStructure.js';
+        ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(MemberActivity));
+    </script> -->
+
+    <script type="text/babel">
+        //         // 載入 nav
+        // $(document).ready(function () {
+        //     $("#nav-container").load("../nav/nav.html");
+        //     // $("#nav-container").load("../nav/search_results.html #myNav");
+        // });
+
+        // const mockData = {
+        //     all: [
+        //         ...[...Array(10)].map((_, index) => ({
+        //             id: index + 1,
+        //             type: 'order',
+        //             restaurant_name: `餐廳${String.fromCharCode(65 + index)}`,
+        //             restaurant_image: `https://placehold.co/100x100?text=餐廳${String.fromCharCode(65 + index)}`,
+        //             items: [{ item_qty: 2, item_price: 100 + index * 10, item_name: `餐點${String.fromCharCode(65 + index)}` }],
+        //             total_price: 200 + index * 20,
+        //             created_at_date: `2024-02-${String(index + 1).padStart(2, '0')}`,
+        //             created_at_time: `${String(12 + index).padStart(2, '0')}:00`
+        //         })),
+        //         ...[...Array(10)].map((_, index) => ({
+        //             id: index + 11,
+        //             type: 'note',
+        //             title: `美食記錄 ${index + 1}`,
+        //             main_photo: `https://placehold.co/100x100?text=美食記錄${index + 1}`,
+        //             content: `這是第 ${index + 1} 次的美食體驗`,
+        //             restaurant_name: `餐廳${String.fromCharCode(75 + index)}`,
+        //             created_at_date: `2024-02-${String(index + 1).padStart(2, '0')}`,
+        //             created_at_time: `${String(13 + index).padStart(2, '0')}:00`
+        //         })),
+        //         ...[...Array(10)].map((_, index) => ({
+        //             id: index + 21,
+        //             type: 'comment',
+        //             content: `這是第 ${index + 1} 條評論`,
+        //             restaurant_name: `餐廳${String.fromCharCode(85 + index)}`,
+        //             restaurant_image: `https://placehold.co/100x100?text=餐廳${String.fromCharCode(85 + index)}`,
+        //             created_at_date: `2024-02-${String(index + 1).padStart(2, '0')}`,
+        //             created_at_time: `${String(14 + index).padStart(2, '0')}:00`
+        //         })),
+        //         ...[...Array(10)].map((_, index) => ({
+        //             id: index + 31,
+        //             type: 'favorite',
+        //             restaurant_name: `餐廳${String.fromCharCode(95 + index)}`,
+        //             main_photo: `https://placehold.co/100x100?text=餐廳${String.fromCharCode(95 + index)}`,
+        //             address: `台北市${['中山', '大安', '信義', '松山', '內湖', '南港', '士林', '北投', '文山', '萬華'][index]}區`,
+        //             avg_price: 300 + index * 50,
+        //             wd_operating: `${11 + index}:00-${21 + index}:00`,
+        //             created_at_date: `2024-02-${String(index + 1).padStart(2, '0')}`,
+        //             created_at_time: `${String(15 + index).padStart(2, '0')}:00`
+        //         }))
+        //     ],
+        //     OrderInfos: [...Array(10)].map((_, index) => ({
+        //         id: index + 1,
+        //         type: 'order',
+        //         restaurant_name: `餐廳${String.fromCharCode(65 + index)}`,
+        //         restaurant_image: `https://placehold.co/100x100?text=餐廳${String.fromCharCode(65 + index)}`,
+        //         items: [{ item_qty: 2, item_price: 100 + index * 10, item_name: `餐點${String.fromCharCode(65 + index)}` }],
+        //         total_price: 200 + index * 20,
+        //         created_at_date: `2024-02-${String(index + 1).padStart(2, '0')}`,
+        //         created_at_time: `${String(12 + index).padStart(2, '0')}:00`
+        //     })),
+        //     MemberNotes: [...Array(10)].map((_, index) => ({
+        //         id: index + 11,
+        //         type: 'note',
+        //         title: `美食記錄 ${index + 1}`,
+        //         main_photo: `https://placehold.co/100x100?text=美食記錄${index + 1}`,
+        //         content: `這是第 ${index + 1} 次的美食體驗`,
+        //         restaurant_name: `餐廳${String.fromCharCode(75 + index)}`,
+        //         created_at_date: `2024-02-${String(index + 1).padStart(2, '0')}`,
+        //         created_at_time: `${String(13 + index).padStart(2, '0')}:00`
+        //     })),
+        //     Comments: [...Array(10)].map((_, index) => ({
+        //         id: index + 21,
+        //         type: 'comment',
+        //         content: `這是第 ${index + 1} 條評論`,
+        //         restaurant_name: `餐廳${String.fromCharCode(85 + index)}`,
+        //         restaurant_image: `https://placehold.co/100x100?text=餐廳${String.fromCharCode(85 + index)}`,
+        //         created_at_date: `2024-02-${String(index + 1).padStart(2, '0')}`,
+        //         created_at_time: `${String(14 + index).padStart(2, '0')}:00`
+        //     })),
+        //     Favorites: [...Array(10)].map((_, index) => ({
+        //         id: index + 31,
+        //         type: 'favorite',
+        //         restaurant_name: `餐廳${String.fromCharCode(95 + index)}`,
+        //         main_photo: `https://placehold.co/100x100?text=餐廳${String.fromCharCode(95 + index)}`,
+        //         address: `台北市${['中山', '大安', '信義', '松山', '內湖', '南港', '士林', '北投', '文山', '萬華'][index]}區`,
+        //         avg_price: 300 + index * 50,
+        //         wd_operating: `${11 + index}:00-${21 + index}:00`,
+        //         created_at_date: `2024-02-${String(index + 1).padStart(2, '0')}`,
+        //         created_at_time: `${String(15 + index).padStart(2, '0')}:00`
+        //     }))
+        // };
+
+        const { useState, useEffect, useRef } = React;
+        // API 共用前綴
+        const API_BASE_URL = 'http://localhost:8000/api/member-activity';
+
+        // 主要 function 處理不同的會員互動
+        function MemberActivity() {
+            // 狀態變數
+            // 設置當前使用的頁籤，預設不分類
+            const [activeTab, setActiveTab] = useState('all');
+            // 儲存 獲取的 歷史項目的資料
+            const [activities, setActivities] = useState([]);
+            // 儲存 當前顯示的 歷史項目的資料
+            const [displayedActivities, setDisplayedActivities] = useState([]);
+            // 判斷 是否還有更多資料可以載入
+            const [hasMore, setHasMore] = useState(true);
+            // 判斷 是否正在載入資料
+            const isLoadingRef = useRef(false);
+            // 判斷 載入的資料是否已經全部都顯示了
+            const [expanded, setExpanded] = useState(false);
+            // 設置當前的 我的評論 子頁籤，預設餐廳
+            const [commentType, setCommentType] = useState('rest');
+            // 設置當前的 我的收藏 子頁籤，預設餐廳
+            const [favoriteType, setFavoriteType] = useState('rest');
+
+            // 當 activeTab 變更時，重新獲取歷史項目數據
+            useEffect(() => {
+                // 確認點擊頁籤有反應
+                console.log('Active tab changed:', activeTab);
+                // 觸發撈資料
+                fetchActivities();
+                // 依賴對象為當前頁籤
+            }, [activeTab]);
+
+            // function 撈資料
+            const fetchActivities = async () => {
+                isLoadingRef.current = true;
+                // 模擬 API 調用
+                // try {
+                //     // const data = mockData[activeTab] || mockData.all;
+                //     // 按時間從新到舊排序
+                //     const sortedData = data.sort((a, b) => {
+                //         const dateA = new Date(a.created_at_date + ' ' + a.created_at_time);
+                //         const dateB = new Date(b.created_at_date + ' ' + b.created_at_time);
+                //         return dateB - dateA;
+                //     });
+                //     setActivities(sortedData);
+                //     setDisplayedActivities(sortedData.slice(0, 4));
+                //     setHasMore(sortedData.length > 4);
+                //     setExpanded(false);
+                //     isLoadingRef.current = false;
+                // } catch (error) {
+                //     console.error('Error fetching activities:', error);
+                //     isLoadingRef.current = false;
+                // }
+                // };
+
+                // 開始撈資料
+                try {
+                    // 根據頁籤，如果不是 all 就看變數是誰 
+                    let endpoint = activeTab === 'all' ? '/all' : `/${activeTab}`;
+                    const response = await fetch(`${API_BASE_URL}${endpoint}`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const result = await response.json();
+
+                    // 不同頁籤對應不同處理方式
+                    let processedData;
+                    // 頁籤為 全部 時
+                    if (activeTab === 'all') {
+                        processedData = [
+                            // 把所有元素加上各自的 type 以利辨識
+                            ...(Array.isArray(result.orders) ? result.orders.map(item => ({ ...item, type: 'order' })) : []),
+                            ...(Array.isArray(result.notes) ? result.notes.map(item => ({ ...item, type: 'note' })) : []),
+                            ...(Array.isArray(result.comments)
+                                ? result.comments.map(item => {
+                                    if (item.rest_infos) {
+                                        return { ...item, type: 'restComment' };
+                                    } else {
+                                        return { ...item, type: 'noteComment' };
+                                    }
+                                })
+                                : Array.isArray(result.comments?.restComments) && Array.isArray(result.comments?.notesComments)
+                                    ? [
+                                        ...result.comments.restComments.map(item => ({ ...item, type: 'restComment' })),
+                                        ...result.comments.notesComments.map(item => ({ ...item, type: 'noteComment' }))
+                                    ]
+                                    : []),
+                            ...(Array.isArray(result.favorites)
+                                ? result.favorites.map(item => {
+                                    if (item.rest_infos) {
+                                        return { ...item, type: 'restFavorite' };
+                                    } else {
+                                        return { ...item, type: 'noteFavorite' };
+                                    }
+                                })
+                                : Array.isArray(result.favorites?.restFavorites) && Array.isArray(result.favorites?.notesFavorites)
+                                    ? [
+                                        ...result.favorites.restFavorites.map(item => ({ ...item, type: 'restFavorite' })),
+                                        ...result.favorites.notesFavorites.map(item => ({ ...item, type: 'noteFavorite' }))
+                                    ]
+                                    : [])
+                        ];
+                    // 評論跟收藏有子頁籤另外處理
+                    // 頁籤為 我的評論 時
+                    } else if (activeTab === 'Comments') {
+                        processedData = [
+                            ...(result.restComments?.map(item => ({ ...item, type: 'restComment' })) || []),
+                            ...(result.notesComments?.map(item => ({ ...item, type: 'noteComment' })) || [])
+                        ];
+                    // 頁籤為 我的收藏 時
+                    } else if (activeTab === 'Favorites') {
+                        processedData = [
+                            ...(result.restFavorites?.map(item => ({ ...item, type: 'restFavorite' })) || []),
+                            ...(result.notesFavorites?.map(item => ({ ...item, type: 'noteFavorite' })) || [])
+                        ];
+                    // 其他頁籤
+                    } else {
+                        let type;
+                        // 除錯用，確認進入 switch 邏輯前的頁籤
+                        console.log('b4 switch', activeTab);
+                        switch (activeTab) {
+                            // 頁籤為 歷史訂單 時
+                            case 'OrderInfos':
+                                // debugger;
+                                type = 'order';
+                                console.log('in switch', type);
+                                processedData = result.data?.map(item => ({ ...item, type })) || [];
+                                break;
+                            // 頁籤為 歷史食記 時
+                            case 'MemberNotes':
+                                type = 'note';
+                                console.log('in switch', type);
+                                processedData = result.query_result?.data?.map(item => ({ ...item, type })) || [];
+                                break;
+                            // 頁籤為 我的評論 時
+                            case 'Comments':
+                                // type = 'comment';
+                                console.log('in switch activeTab:', activeTab);
+                                console.log('in switch', result.data);
+                                processedData = result.data?.map(item => {
+                                    if (item.rest_infos) {
+                                        console.log('in switch item', item);
+                                        return { ...item, type: 'restComment' };
+                                    } else {
+                                        console.log('in switch item', item);
+                                        return { ...item, type: 'noteComment' };
+                                    }
+                                }) || [];
+                                console.log('in switch', processedData);
+                                break;
+                            // 頁籤為 我的收藏 時
+                            case 'Favorites':
+                                // type = 'favorite';
+                                console.log('in switch activeTab:', activeTab);
+                                console.log('in switch data', result.data);
+                                processedData = result.data?.map(item => {
+                                    if (item.rest_infos) {
+                                        console.log('in switch item', item);
+                                        return { ...item, type: 'restFavorite' };
+                                    } else {
+                                        console.log('in switch item', item);
+                                        return { ...item, type: 'noteFavorite' };
+                                    }
+                                }) || [];
+                                console.log('in switch', processedData);
+                                break;
+                            default:
+                                type = activeTab.toLowerCase();
+                                processedData = [];
+                        }
+                        // 除錯用，確認頁籤是否經過 Switch 替換
+                        console.log('fetch type:', type);
+
+                    }
+                    // 確認資料撈到什麼
+                    console.log('Processed data:', processedData);
+
+                    // const sortedData = processedData.sort((a, b) => {
+                    //     const dateA = new Date(a.created_at_date + ' ' + a.created_at_time);
+                    //     const dateB = new Date(b.created_at_date + ' ' + b.created_at_time);
+                    //     return dateB - dateA;
+                    // });
+
+                    // 更新資料
+                    setActivities(processedData);
+                    // 更新要顯示的資料，0～4 筆
+                    setDisplayedActivities(processedData.slice(0, 4));
+                    // 判斷是否還可以載入
+                    setHasMore(activeTab === 'all' ? processedData.length > 4 : result.current_page < result.last_page);
+                    // 判斷資料已經顯示了
+                    setExpanded(false);
+
+                    // 確認各個 useState 狀態
+                    console.log('State after update:', {
+                        activities: processedData,
+                        displayedActivities: processedData.slice(0, 4),
+                        hasMore: activeTab === 'all' ? processedData.length > 4 : result.current_page < result.last_page
+                    });
+
+                } catch (error) {
+                    console.error('Error fetching activities:', error);
+                    // setActivities([]);
+                    // setDisplayedActivities([]);
+                    // setHasMore(false);
+                } finally {
+                    isLoadingRef.current = false;
+                }
+            };
+
+            // function 處理頁籤切換
+            const handleTabChange = (tab) => {
+                console.log('Changing tab to:', tab);
+                setActiveTab(tab);
+                setCommentType('all');
+                setFavoriteType('all');
+                setExpanded(false);
+            };
+
+            // function 處理判斷是否還能載入
+            const handleLoadMore = async () => {
+                if (activeTab === 'all') {
+                    console.log('LoadMore all', activities);
+                    setDisplayedActivities(activities);
+                    setExpanded(true);
+                    setHasMore(false);
+                    debugger;
+                } else {
+                    const nextPage = Math.ceil(displayedActivities.length / 4) + 1;
+                    const response = await fetch(`${API_BASE_URL}/${activeTab}?page=${nextPage}`);
+                    const result = await response.json();
+                    const newData = result.data || [];
+                    console.log('LoadMore', {
+                        'Current page:': result.current_page,
+                        'Next page:': nextPage,
+                        'LoadMore response:': response,
+                        'LoadMore result:': result,
+                        'New data:': newData,
+                        'Current displayed activities:': displayedActivities,
+                    })
+                    console.log('Load More Activities', activities);
+                    setActivities([...activities, ...newData]);
+                    setDisplayedActivities([...displayedActivities, ...newData]);
+                    // setExpanded(true);
+                    setHasMore(result.current_page < result.last_page);
+                    debugger;
+                }
+            };
+
+            // function 處理編輯評論
+            const handleEditComment = async (id, content, isRestComment) => {
+                console.log(`Editing comment ${id} with content: ${content}`);
+                try {
+                    const endpoint = isRestComment ? 'RestComments' : 'NotesComments';
+                    const response = await fetch(`${API_BASE_URL}/member-activity/${endpoint}/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ content }),
+                    });
+                    if (!response.ok) {
+                        throw new Error('Failed to update comment');
+                    }
+                    // 重新撈評論或更新資料
+                    fetchActivities();
+                } catch (error) {
+                    console.error('Error updating comment:', error);
+                }
+            };
+
+            // function 處理刪除評論
+            const handleDeleteComment = async (id) => {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/${endpoint}/${id}`, {
+                        method: 'DELETE',
+                    });
+                    if (!response.ok) {
+                        throw new Error('Failed to delete comment');
+                    }
+                    // 重新撈評論或更新資料
+                    fetchActivities();
+                } catch (error) {
+                    console.error('Error deleting comment:', error);
+                }
+            };
+
+            // function 處理刪除收藏
+            const handleDeleteFavorite = async (id, isRestFavorite) => {
+                const confirmed = window.confirm('確定要移除收藏嗎？');
+                if (confirmed) {
+                    try {
+                        const endpoint = isRestFavorite ? 'RestFavorites' : 'NotesFavorites';
+                        const response = await fetch(`${API_BASE_URL}/member-activity/${endpoint}/${id}`, {
+                            method: 'DELETE',
+                        });
+                        if (!response.ok) {
+                            throw new Error('Failed to delete favorite');
+                        }
+                        // 重新撈收藏或更新資料
+                        fetchActivities();
+                    } catch (error) {
+                        console.error('Error deleting favorite:', error);
+                    }
+                }
+            };
+            // 除錯用，確認最新狀態
+            console.log('Current state:', {
+                activeTab,
+                activitiesCount: activities.length,
+                displayedActivitiesCount: displayedActivities.length,
+                hasMore,
+                isLoading: isLoadingRef.current,
+
+            });
+
+            // 渲染組件
+            return (
+                <div className="member-activity-container">
+                    <div className="rightPart">
+                        <div id="sidebar" className="sidebar col-2 text-center">
+                            <div className="col align-self-center">
+                                <a href="#"><p>個人檔案</p></a>
+                                <a href="#"><p>我的訂單</p></a>
+                                <a href="#" className="active"><p>歷史紀錄</p></a>
+                                <a href="#"><p>發布食記</p></a>
+                            </div>
+                        </div>
+                        <div className="col">
+                            {/*<div className="breadcrumb">
+                                <a href="#">會員中心</a>
+                                <span> → </span>
+                                <a href="./myHistory.html" className="active">歷史紀錄</a>
+                            </div>*/}
+                            <div className="row ms-5 justify-content-center">
+                                {['all', 'OrderInfos', 'MemberNotes', 'Comments', 'Favorites'].map(tab => (
+                                    <div className="col-2" key={tab}>
+                                        <button
+                                            className={`btn btn-outline-success tab-button ${activeTab === tab ? 'active' : ''}`}
+                                            onClick={() => handleTabChange(tab)}
+                                        >
+                                            {tab === 'all' ? '全部' :
+                                                tab === 'OrderInfos' ? '歷史訂單' :
+                                                    tab === 'MemberNotes' ? '歷史食記' :
+                                                        tab === 'Comments' ? '我的評論' : '我的收藏'}
+                                        </button>
+                                    </div>
+                                ))}
+
+                                <hr className="mt-3" />
+                            </div>
+                            {activeTab === 'Comments' || activeTab === 'Favorites' ? (
+                                <div className="row ms-5 justify-content-center mt-3">
+                                    <div className="col-3">
+                                        <button
+                                            className={`btn btn-outline-secondary ${(activeTab === 'Comments' && commentType === 'rest') ||
+                                                (activeTab === 'Favorites' && favoriteType === 'rest') ? 'active' : ''
+                                                }`}
+                                            onClick={() => {
+                                                if (activeTab === 'Comments') {
+                                                    setCommentType('rest');
+                                                } else if (activeTab === 'Favorites') {
+                                                    setFavoriteType('rest');
+                                                }
+                                            }}
+                                        >
+                                            餐廳
+                                        </button>
+                                    </div>
+                                    <div className="col-3">
+                                        <button
+                                            className={`btn btn-outline-secondary ${(activeTab === 'Comments' && commentType === 'note') ||
+                                                (activeTab === 'Favorites' && favoriteType === 'note') ? 'active' : ''
+                                                }`}
+                                            onClick={() => {
+                                                if (activeTab === 'Comments') {
+                                                    setCommentType('note');
+                                                } else if (activeTab === 'Favorites') {
+                                                    setFavoriteType('note');
+                                                }
+                                            }}
+                                        >
+                                            食記
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : null}
+                            {console.log('Rendering with displayedActivities:', displayedActivities)}
+
+                            {isLoadingRef.current ? (
+                                <p>Loading...</p>
+                            ) : displayedActivities.length === 0 ? (
+                                <p>No activities found</p>
+                            ) : (
+
+                                displayedActivities
+                                    .filter(activity => {
+                                        if (activeTab === 'Comments') {
+                                            return commentType === 'all' ||
+                                                (commentType === 'rest' && activity.type === 'restComment') ||
+                                                (commentType === 'note' && activity.type === 'noteComment');
+                                        }
+                                        if (activeTab === 'Favorites') {
+                                            return favoriteType === 'all' ||
+                                                (favoriteType === 'rest' && activity.type === 'restFavorite') ||
+                                                (favoriteType === 'note' && activity.type === 'noteFavorite');
+                                        }
+                                        return true;
+                                    })
+                                    .map((activity, index) => {
+                                        const uniqueKey = `${activity.type}-${activity.id}-${index}`;
+                                        switch (activity.type) {
+                                            case 'order':
+                                                return <OrderInfos key={uniqueKey} order={activity} />;
+                                            case 'note':
+                                                return <MemberNotes key={uniqueKey} note={activity} />;
+                                            case 'restComment':
+                                                console.log('Rest comment:', activity.type);
+                                                return <Comments key={uniqueKey} comment={activity} onEdit={handleEditComment} onDelete={handleDeleteComment} isRestComment={true} />;
+                                            case 'noteComment':
+                                                console.log('Note comment:', activity.type);
+                                                return <Comments key={uniqueKey} comment={activity} onEdit={handleEditComment} onDelete={handleDeleteComment} isRestComment={false} />;
+                                            case 'restFavorite':
+                                                console.log('Rest favorite:', activity.type);
+                                                return <Favorites key={uniqueKey} favorite={activity} onDelete={handleDeleteFavorite} isRestFavorite={true} />;
+                                            case 'noteFavorite':
+                                                return <Favorites key={uniqueKey} favorite={activity} onDelete={handleDeleteFavorite} isRestFavorite={false} />;
+                                            default:
+                                                console.log('Unknown activity type:', activity.type);
+                                                return null;
+                                        }
+                                    }
+                                    )
+
+                            )}
+                            {console.log('加載', {
+                                'Has more:': hasMore,
+                                'Is loading:': isLoadingRef.current,
+                                'Expanded:': expanded,
+                            })}
+                            {hasMore && !isLoadingRef.current && !expanded && (
+                                <button className="btn btn-outline-success" onClick={handleLoadMore}>觀看更多</button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+
+        function OrderInfos({ order }) {
+            console.log('Order:', order);
+            console.log('raw_totalPrice:', typeof (order.total_price));
+            // const restaurantName = order.RestInfos?.Users?.name || '未知餐廳';
+            const restaurantName = order.restaurant_name || '未知餐廳';
+
+            function convertToRelativePath(url) {
+                if (url.includes('/storage/')) {
+                    const parts = url.split('/storage/');
+                    if (parts.length > 1) {
+                        return `../../public/storage/${parts[1]}`;
+                    }
+                }
+                console.log('url', url);
+                return url;
+            }
+            // http://localhost/MySwallab/public/storage/avatar/1.jpg
+            const raw_restaurantImage = order.restaurant_img || '預設圖片URL';
+            // ../../public/storage/avatar/1.jpg
+            const restaurantImage = convertToRelativePath(raw_restaurantImage) || '預設圖片URL';
+
+            const orderStatus = order.status || '未知狀態';
+            const raw_Date = new Date(order.created_at);
+            const raw_year = raw_Date.getFullYear();
+            const raw_date = raw_Date.getDate();
+            const raw_day = raw_Date.getDay();
+            const orderDate = raw_year + '-' + raw_day.toString().padStart(2, '0') + '-' + raw_date.toString().padStart(2, '0');
+            const orderItems = order.details || [];
+            const totalPrice = Math.round(order.total_price) || 0;
+            const [isExpanded, setIsExpanded] = useState(false);
+
+
+
+            console.log('OrderInfos',
+                {
+                    'order:': order,
+                    'restaurantName:': restaurantName,
+                    'restaurantImage:': restaurantImage,
+                    'orderStatus:': orderStatus,
+                    'orderDate:': orderDate,
+                    'orderItems:': orderItems,
+                    'totalPrice:': totalPrice,
+                    'isExpanded:': isExpanded,
+                })
+            return (
+                <div className="row mt-5 myRecordsTemp align-self-center">
+                    <div className="col-2">
+                        <div className="myRecordsContainer align-self-center">
+                            <img className="activity-image" src={restaurantImage} alt={restaurantName} />
+                        </div>
+                    </div>
+                    <div className="col-1"></div>
+                    <div className="col-5">
+                        <div className="activity-title-order">
+                            <div>訂單狀態：{orderStatus}</div>
+                            <a href="#"><span>{restaurantName}</span></a>
+                        </div>
+                        <div className="row myRecordsInfo container">
+                            {orderItems.map((item, index) => (
+                                <div key={index}>
+                                    {item.item_qty}份 ${item.item_price}的 {item.item_name} <br />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="col-1 align-items-center">
+                        <div><span>${totalPrice} </span></div>
+                    </div>
+                    <div className="col-2 myRecordsBtn">
+                        <div><span>{orderDate}</span></div>
+                        <button className="activity-button">再次訂購</button>
+                    </div>
+                    <div className="col-1"></div>
+                </div>
+            );
+        }
+
+        function MemberNotes({ note }) {
+            console.log(note);
+            const noteTitle = note.title || '無標題';
+            const noteContent = note.content || '無內容';
+
+            function convertToRelativePath(url) {
+                if (url.includes('/storage/')) {
+                    const parts = url.split('/storage/');
+                    if (parts.length > 1) {
+                        return `../../public/storage/${parts[1]}`;
+                    }
+                }
+                console.log('url', url);
+                return url;
+            }
+
+            const raw_noteImage = note.main_photo || '預設圖片URL';
+            const noteImage = convertToRelativePath(raw_noteImage) || '預設圖片URL';
+            const viewCount = note.count || 0;
+            const commentCount = note.notes_comments?.length || 0;
+            const raw_Date = new Date(note.created_at);
+            const raw_year = raw_Date.getFullYear();
+            const raw_date = raw_Date.getDate();
+            const raw_day = raw_Date.getDay();
+            const createdDate = raw_year + '-' + raw_day.toString().padStart(2, '0') + '-' + raw_date.toString().padStart(2, '0');
+            const restaurantName = note.rest_infos?.users?.name || '未知餐廳';
+
+            return (
+                <div className="row mt-5 myRecordsTemp align-self-center">
+                    <div className="col-2">
+                        <div className="myRecordsContainer align-self-center">
+                            <img className="activity-image" src={noteImage} alt={noteTitle} />
+                        </div>
+                    </div>
+                    <div className="col-1"></div>
+                    <div className="col-6">
+                        <div className="row activity-title-note">
+                            <a href=""><span>{noteTitle}</span></a>
+                            <div>{restaurantName}</div>
+                        </div>
+                        <div className="row myRecordsInfo container-fluid myNotes border border-secondary rounded">
+                            <div className="activity-content-note">{noteContent}</div>
+                        </div>
+                    </div>
+
+                    <div className="col-3 myRecordsBtn">
+                        <div><span>{createdDate}</span></div>
+                        <div className="mt-2 activity-content text-left fs-small">
+                            <span>瀏覽次數：{viewCount}</span> <br />
+                            <span>留言總計：{commentCount}</span>
+                        </div>
+                        <div className="activity-buttons">
+                            <button className="activity-button">
+                                <i className="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button className="activity-button">
+                                <i className="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function Comments({ comment, onEdit, onDelete, isRestComment }) {
+            const [isEditing, setIsEditing] = React.useState(false);
+            const [editedContent, setEditedContent] = React.useState(comment.content || '');
+
+            // 標題切換
+            const restaurantName = isRestComment
+                ? comment.restaurant.name
+                : comment.note.title;
+            // 評分有無
+            const score = isRestComment
+                ? comment.score || 0
+                : '';
+
+
+            function convertToRelativePath(url) {
+                if (url.includes('/storage/')) {
+                    const parts = url.split('/storage/');
+                    if (parts.length > 1) {
+                        return `../../public/storage/${parts[1]}`;
+                    }
+                } else {
+                    return;
+                }
+                console.log('url', url);
+                return url;
+            }
+
+            const raw_restaurantImage = isRestComment
+                ? comment.restaurant.image
+                : comment.note.restaurant.image;
+            const restaurantImage = convertToRelativePath(raw_restaurantImage) || '預設圖片URL';
+
+            const commentContent = comment.content || '無評論內容';
+            const raw_Date = new Date(comment.created_at);
+            const raw_year = raw_Date.getFullYear();
+            const raw_date = raw_Date.getDate();
+            const raw_day = raw_Date.getDay();
+            const createdDate = raw_year + '-' + raw_day.toString().padStart(2, '0') + '-' + raw_date.toString().padStart(2, '0');
+            function handleEdit() {
+                onEdit(comment.id, editedContent, isRestComment);
+                setIsEditing(false);
+            }
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            }
+            const randomScore = getRandomInt(5) + 1;
+
+            return (
+                <div className="row mt-5 myRecordsTemp align-self-center">
+                    <div className="col-2">
+                        <div className="myRecordsContainer align-self-center">
+                            <img className="activity-image" src={restaurantImage} alt={restaurantName} />
+                        </div>
+                    </div>
+                    <div className="col-1"></div>
+                    <div className="col-6">
+                        <div className="row myRecordsTitle activity-title-note">
+                            <a href="#"><span>{restaurantName}</span></a>
+                            {isRestComment ? (
+                                <div className="row myRecordsContent mt-3"><span>({randomScore}) &nbsp; <i className="fa-solid fa-star mt-1"></i></span></div>
+
+                            ) : (<div></div>)
+                            }
+                        </div>
+                        <div className="row myRecordsContent container activity-content-comment">
+                            {isEditing ? (
+                                <textarea
+                                    value={editedContent}
+                                    onChange={(e) => setEditedContent(e.target.value)}
+                                />
+                            ) : (
+                                commentContent
+                            )}
+                        </div>
+                    </div>
+                    <div className="col-2 myRecordsBtn">
+                        <div><span>{createdDate}</span></div>
+                        <div className="activity-buttons">
+                            {isEditing ? (
+                                <>
+                                    <button className="activity-button col" onClick={handleEdit}>保存</button>
+                                    <button className="activity-button col" onClick={() => setIsEditing(false)}>取消</button>
+                                </>
+                            ) : (
+                                <>
+                                    <button className="activity-button col" onClick={() => setIsEditing(true)}>
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <button className="activity-button col" onClick={() => onDelete(comment.id, !!comment.RestInfos)}>
+                                        <i className="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                    <div className="col-1"></div>
+                </div>
+            );
+        }
+
+        function Favorites({ favorite, onDelete, isRestFavorite }) {
+            // const isRestFavorite = favorite.type === 'restFavorite';
+            const restaurantName = isRestFavorite ? favorite.restaurant.name : favorite.note.title;
+
+            function convertToRelativePath(url) {
+                if (url.includes('/storage/')) {
+                    const parts = url.split('/storage/');
+                    if (parts.length > 1) {
+                        return `../../public/storage/${parts[1]}`;
+                    }
+                }
+                console.log('url', url);
+                return url;
+            }
+
+            const raw_restaurantImage = isRestFavorite ? favorite.restaurant.avatar : favorite.note.main_photo;
+            const restaurantImage = convertToRelativePath(raw_restaurantImage) || '預設圖片URL';
+            const restaurantAddress = isRestFavorite ? favorite.restaurant.address : favorite.note.restaurant.address;
+            const restaurantAvgPrice = isRestFavorite ? favorite.restaurant.avg_price : favorite.note.restaurant.avg_price;
+            const restaurantOperatingHours = isRestFavorite ? favorite.restaurant.wd_operating : favorite.note.restaurant.wd_operating;
+            const raw_Date = new Date(favorite.created_at);
+            const raw_year = raw_Date.getFullYear();
+            const raw_date = raw_Date.getDate();
+            const raw_day = raw_Date.getDay();
+            const createdDate = raw_year + '-' + raw_day.toString().padStart(2, '0') + '-' + raw_date.toString().padStart(2, '0');
+            // const restaurantName = isRestFavorite
+            //     ? favorite.rest_infos?.users?.name
+            //     : favorite.member_notes?.rest_infos?.users?.name || '未知餐廳';
+            // const restaurantImage = isRestFavorite
+            //     ? favorite.rest_infos?.users?.avatar
+            //     : favorite.member_notes?.main_photo || '預設圖片URL';
+            // const restaurantAddress = isRestFavorite
+            //     ? favorite.rest_infos?.address
+            //     : favorite.member_notes?.rest_infos?.address || '地址未知';
+            // const restaurantAvgPrice = isRestFavorite
+            //     ? favorite.rest_infos?.avg_price
+            //     : favorite.member_notes?.rest_infos?.avg_price || '價格未知';
+            // const restaurantOperatingHours = isRestFavorite
+            //     ? favorite.rest_infos?.wd_operating
+            //     : favorite.member_notes?.rest_infos?.wd_operating || '營業時間未知';
+            // const createdDate = favorite.created_at || '未知日期';
+
+            const noteContent = isRestFavorite ? '' : favorite.note.content || '無內容';
+            const viewCount = isRestFavorite ? '' : favorite.note.count || 0;
+            const commentCount = isRestFavorite ? '' : favorite.note.notes_comments?.length || 0;
+            const visitedDate = isRestFavorite ? '' : favorite.note.visited_date || createdDate;
+            const purposes = isRestFavorite ? favorite.restaurant.purposes : [];
+            console.log('visitedDate',visitedDate);
+
+            return (
+                <div className="row mt-5 myRecordsTemp align-self-center">
+                    {/* 收藏項目的內容 */}
+                    <div className="col-2">
+                        <div className="myRecordsContainer align-self-center">
+                            <img className="activity-image" src={restaurantImage} alt={restaurantName} />
+                        </div>
+                    </div>
+                    <div className="col-1"></div>
+                    <div className="col-6">
+                        <div className="activity-title-note">
+                            <a href="#"><span>{restaurantName}</span></a>
+                        </div>
+                        {isRestFavorite ? (
+                            <div className="row myRecordsInfo container activity-content">
+                                <div><span>地址: {restaurantAddress}</span></div>
+                                <div><span>均價: ${restaurantAvgPrice}</span></div>
+                                <div><span>營業時間: {restaurantOperatingHours}</span></div>
+                                <div><span>評分: (評分未知)</span></div>
+                                <div>
+                                    <span>適合：</span>
+                                    {purposes.map((purpose, index) => (
+                                        <span key={index} className="border border-secondary rounded-pill"> &nbsp;&nbsp; {purpose} &nbsp;&nbsp;</span>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <div className="row myRecordsInfo container-fluid myNotes border border-secondary rounded">
+                                    <div className="activity-content-note">{noteContent}</div>
+                                </div>
+                            </div>
+                        )}
+                        <div className="row myRecordsInfo container activity-content">
+
+                        </div>
+                    </div>
+                    {/*<div className="col-1">
+                        <i className="fa-solid fa-heart"></i>
+                    </div>*/}
+                    <div className="col-3 myRecordsBtn">
+                        <div><span>{createdDate}</span></div>
+                        {isRestFavorite ? ('') : (
+                            <div>
+                                <div className="mt-2 activity-content text-left fs-small">
+                                    <span>瀏覽次數：{viewCount}</span> <br />
+                                    <span>留言總計：{commentCount}</span> <br />
+                                    <span>造訪日期：{visitedDate}</span>
+
+                                </div>
+
+                            </div>
+                        )}
+                        <button className="activity-button" onClick={() => onDelete(favorite.id, isRestFavorite)}>
+                            <i className="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <div className="col-1"></div>
+                </div>
+            );
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<MemberActivity />);
+
+
+    </script>
+</body>
+
+</html>
